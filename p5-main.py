@@ -21,15 +21,15 @@ notcarslen = len(notcars)
 
 cars.extend(notcars)
 print(len(cars))
-#print("Extracting features")
-#car_features = extract_features(cars, cspace='HSV', spatial_size=(spatial, spatial), hist_bins=histbin, hist_range=(0, 256))
+print("Extracting features")
+car_features = extract_features(cars, cspace='HSV', spatial_size=(spatial, spatial), hist_bins=histbin, hist_range=(0, 256))
 
-#print("Extracted")
+print("Extracted")
 
-#X = np.array(car_features)
-#print(str(X.shape))
+X = np.array(car_features)
+print(str(X.shape))
 # Define a labels vector based on features lists
-#y = np.concatenate((np.ones(carslen), np.zeros(notcarslen))).flatten()
+y = np.concatenate((np.ones(carslen), np.zeros(notcarslen))).flatten()
 
 
 def crop(filename, xmin, xmax, ymin, ymax, legend):
@@ -37,14 +37,14 @@ def crop(filename, xmin, xmax, ymin, ymax, legend):
     return img[ymin:ymax, xmin:xmax]
 
 
-clf = Classifier.load('p5-hsv.pkl')
-#clf = Classifier()
+#clf = Classifier.load('p5-hsv.pkl')
+clf = Classifier()
 
-#clf.train(X, y)
+clf.train(X, y)
 
 #clf.load('p5.pkl')
 
-#clf.save("pk5-hsv.pkl")
+clf.save("pk5-hsv.pkl")
 
 
 def tests_classifier(clf):
